@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <p>Pulsa en el boton para ver la fecha y hora</p>
+    <button onclick="displayDate()">¿Que hora es?</button>
+    <p id="demo"></p>
+    <script>
+        document.getElementById("demo").style.color='red';
+        document.getElementById("demo").innerHTML = "Para Demo";
+    </script>
+    <script>
+        function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+        }
+    </script>
+</body>
+</html>

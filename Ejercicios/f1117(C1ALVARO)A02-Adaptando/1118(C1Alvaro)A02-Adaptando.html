@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A02-Adaptando</title>
+    <script>
+        //Funciones reutilizables
+        function myFunction(Elemento, color){
+            Elemento.style.backgroundColor = color;
+        }
+    </script>
+    <script>
+        //Asociando respuestas a evento de carga de window
+        window.addEventListener('load', CargadaPagina);
+        function CargadaPagina(){
+            // Dar valor al titulo de la pagina y al encabezado
+            document.title = "Optimizando el A2";
+            // Declarar variables/constantes de los objetod DOM que referencian a etiquetas HTML
+            const elH1 = document.getElementById('h1');
+            elH1.innerHTML = "Optimizando el A2";
+            const elDemo = document.getElementById("demo");
+            // Declarar variables/constantes usadas en la pagina
+            var elColor = "red";
+
+            // Asociando respuestas a evento keydown del elDemo
+            elDemo.addEventListener('keydown',
+            function(){
+                // Dar Valor correcto, no se esta validando
+                alert("Hay parametros?? " + arguments.length);
+                // elColor = prompt("Dame el color para el fondo del input");
+                myFunction(elDemo, elColor)
+            }
+            );
+        }
+    </script>
+</head>
+<body>
+    <p>This example uses the HTML DOM to assign an "onkeydown" event to an input element.<br>
+        Este ejemplo utiliza HTML DOM para asignar un evento "onkeydown" a un elemento de entrada.</p>
+    <p>Press a key inside the text field to set a red background color.<br>
+         Presione una tecla dentro del campo de texto para establecer un color de fondo rojo. </p>
+     <input type="text" id="demo">
+</body>
+</html>
