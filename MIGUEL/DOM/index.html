@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script src="app.js"></script>
+</head>
+<body>
+    
+    <!--
+        OBJETOS DE ALTO NIVEL: dependen del navegador
+        - Window
+        - Screen
+        - Navigator
+        - Location
+        - History
+        - Document
+
+        BOM Modelo de objetos del navegador (Browse Model Object)
+
+    -->
+
+    <script>
+        //INSTRUCCIONESD E TIEMPO
+        /*
+        El objeto window permite ejecutar codigo a en intervalos de tiempo
+        hay 3 metodos: setTimeout, clearTimeout, setInterval
+
+        setTimeout(<funcion>, <milisegundos>): se indican cuantos segundos
+        tienen que pasar antes de que la funcion indicada en el primer parametro
+        se ejecute
+
+        clearTimeout(<variable timeout>): la asignamos un clearTimeout a una variable
+        podemos detener su ejecucion con clearTimeout
+
+        setInterval(<function>, <milisegundos>): repetir una funcion cada intervalo
+        de tiempo
+        */
+
+        /*
+        function saludar(){
+            alert("HOLA!");
+        }
+
+        var int = setInterval(reloj, 1000);
+
+        function reloj(){
+            var fecha = new Date();
+            document.getElementById("reloj").innerHTML = fecha.getSeconds();
+        }*/
+
+        //OBJETOS DEL NAVEGADOR
+        //Guarda informacion sobre el navegador
+        //No hay un estandar publico, pero la mayoria de los navegadores soportan este objeto
+
+        //PROPIEDADES DEL OBJETO NAVIGATOR
+
+        var texto = "";
+
+        //appCodeName: codename del navegador
+        texto += "<br/>CODENAME: " + navigator.appCodeName;
+
+        
+
+    </script>
+
+    <!-- <p id="reloj"></p>
+
+    <button onclick="setTimeout(saludar, 3000)">Saluda</button>
+    <button onclick="sal = setTimeout(saludar, 3000)">Saluda con Variables</button>
+    <button onclick="clearTimeout(sal)">Para saludo</button>
+    <button onclick="clearTimeout(int)">Parar reloj</button> -->
+
+<!--     
+    <p id="ventana"></p>
+
+    <button onclick="crearVentana()">Crear ventana</button>
+    <button onclick="cerrarVentana()">Cerrar ventana</button>
+    <button onclick="redimensionarVentana()">Redimensionar ventana</button>
+    <button onclick="redimensionarVentana2()">Redimensionar ventana 2</button>
+    <button onclick="moverVentana()">Mover ventana</button>
+    <button onclick="moverVentana2()">Mover ventana 2</button>
+    <button onclick="enfocar()">Focus</button>
+    <button onclick="imprimir()">Imprimir</button>
+
+    <script>
+
+        //PROPIEDADES BASICAS DE WINDOW
+        window.name = "Mi ventana";
+        var texto = "";
+
+        // Nombre de la ventana
+        texto += "<br/>Nombre: " + window.name;
+
+        // Tamaño de la ventana con toolbar y scroll
+        texto += "<br/>Ancho externo: " + window.outerWidth;
+        texto += "<br/>Alto externo: " + window.outerHeight;
+
+        // Tamaño de la ventana sin toolbar y scroll
+        texto += "<br/>Ancho interno: " + window.innerWidth;
+        texto += "<br/>Alto interno: " + window.innerHeight;
+
+        // Scroll horizontal y vertical
+        texto += "<br/>Scroll horizontal: " + window.pageXOffset;
+        texto += "<br/>Scroll vertical: " + window.pageYOffset;
+
+        // Distanciade la esquina superior izquierda
+        texto += "<br/>Distancia desde la izquierda: " + window.screenX;
+        texto += "<br/>Distancia desde arriba: " + window.screenY;
+
+        document.getElementById("ventana").innerHTML = texto;
+
+        /*
+        PROPIEDADES CON IFRAMES
+        - frames: devuelve todos los elementos iframe de la ventana
+        - frameElement: devuelve el elemento en el que la ventana esta insertado
+        - length: devuelve el numero de frames que tiene la ventana
+        
+        PROPIEDADES CON OTRAS VENTANAS
+        - closed: devuelve un booleano si la ventana esta cerrada
+        - opened: devuelve una referencia con la ventana que creo la ventana actual
+        - parent: devuelve la ventana padre de la actual
+        - self: devuelve la ventana actual
+
+        CON WINDOW PODEMOS ACCEDER A OTROS OBJETOS DEL NAVEGADOR
+        window.document
+        window.navigator
+        window.screen
+        window.history
+        window.location
+        */
+
+        //METODO DE WINDOW MAS IMPORTANTES
+        var miVentana;
+
+        //Abrir ventana
+        //open(<URL>, <nombre>, <especificaciones>)
+        function crearVentana(){
+            // miVentana = window.open("http://www.google.es");
+            miVentana = window.open("", "", "width=100, height=100");
+            miVentana.document.write("<h1>Mi ventana</h1>")
+        }
+
+        //Cerrar ventana
+        // close() cierra una ventana
+        function cerrarVentana(){
+            miVentana.close();
+        }
+
+        // Redimensionar una ventana auentando el nº de pixeles indicados
+        // resizeBy(<nº pixels ancho>, <nº pixels alto>);
+        function redimensionarVentana(){
+            miVentana.resizeBy(100, 100);
+        }
+
+        // Redimensionar ventana al numero de pixeles indicado
+        // resizeTo(<nº pixels ancho>, <nº pixels alto>);
+        function redimensionarVentana2(){
+            miVentana.resizeTo(400, 400);
+        }
+
+        // Mover ventana un numero de pixeles indicado respecto a su posicion actual
+        // moveBy(<nº pixels ancho>, <nº pixels alto>);
+        function moverVentana(){
+            miVentana.moveBy(100, 100);
+        }
+
+        // Mover ventana un numero de pixeles indicado respecto a su posicion inicial
+        // moveTo(<nº pixels ancho>, <nº pixels alto>);
+        function moverVentana2(){
+            miVentana.moveTo(100, 100);
+        }
+
+        // Mover las barras de scroll un numero de pixeles desde su posicion actual
+        // scrollBy(<nº pixels ancho>, <nº pixels alto>);
+        
+        // Mover las barras de scroll un numero de pixeles desde su posicion inicial
+        // scrollTo(<nº pixels ancho>, <nº pixels alto>);
+
+        // Focus pone un foco en la ventana indicada
+        // focus();
+        function enfocar(){
+            miVentana.focus();
+        }
+
+        // Print imprime la ventana
+        // print();
+        function imprimir(){
+            miVentana.print();
+        }
+
+        // Stop detiene la carga de la pantalla
+        // stop();
+
+
+        // CUADROS DE DIALOGO
+        // alert(mensaje); muestra un mensaje al usuario y no devuelve ningun valro
+        alert("Hola, que tal?");
+
+        // prompt(mensaje); muestra un mensaje al usuario y un campo que puede concatenar o no un texto por defecto. Lo que introduzca el usuario se almacenara en una variable a la que se le asigna
+        var respuesta = prompt("Cual es tu nombre?", "Introduce un nombre");
+        alert("Hola " + respuesta);
+
+        // confirm(mensaje); muestra un mensaje al usuario y dos botones. Si el usuario pulsa aceptar devueve true, si pulsa cancelar o cierra la ventana false.
+        var respuesta2 = confirm("Te gusta JavaScrpit?");
+        alert((respuesta2) ? "Me alegro" : "Que pena!");
+
+    </script> -->
+
+</body>
+</html>
