@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Objetivo: al pulsar las etiquetas de h2 nos va a permitir
+        // ver el elemento div y los li
+        window.addEventListener("load", inicio);
+
+        function inicio(){
+            // Les vamos a asignar a los elementos h2 de la pagina un evento click que
+            // llame a la funcion reecorrerAdelante que crearemos mas tarde
+            for(let int = 0; i<document.getElementsByTagName("h2").length; i++){
+                document.getElementsByTagName("h2")[i].addEventListener('click', recorrerAdelante);
+            }
+        }
+
+        // Vamos a capturar el elemento ya llamado al evento, para saber en que
+        // etiqueta h2 nos encontramos
+        function recorrerAdelante(e){
+            let texto = "";
+            let h2 = e.target; // Nos dice que h2 tenemos, en cual hemos hecho click
+            texto += "Has elegido " + h2.textContent;
+
+            // Acceder al padre
+            let padre = h2.parentElement;
+            texto += " que está situada en el " + padre.id + "<br>";
+
+            // Seleccionamos al hermano
+            let ul = h2.nextElementSibling;
+
+            // Mostrar el numero de hijos que tiene el hermano
+            texto += "El numero de provincias es " + ul.children.length + ": ";
+
+            let hijo = ul.firstChild;
+            while(hijo!=null){
+                texto +=  " " + hijo.textContent;
+                hijo = hijo.nextElementSibling;
+            }
+
+            // Escribir al texto
+            docment.getElementById("texto").innerHTML = texto;
+        }
+    </script>
+</head>
+<body>
+
+    <div id="norte">
+        <h2>Galicia</h2>
+        <ul id="lista">
+            <li>A Coruña</li>
+            <li>Lugo</li>
+            <li>Ourense</li>
+            <li>Pontevedra</li>
+        </ul>
+    </div>
+
+    <div id="sur">
+        <h2>Canarias</h2>
+        <ul id="lista">
+            <li>Tenerife</li>
+            <li>Las palmas</li>
+        </ul>
+    </div>
+
+    <div id="texto"></div>
+    
+</body>
+</html>

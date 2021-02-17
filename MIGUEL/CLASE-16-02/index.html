@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .miClase{
+            color: red;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", inicio);
+
+        function inicio(){
+            document.getElementById("crearParrafo").addEventListener("click", crearParrafo);
+            document.getElementById("crearImagen").addEventListener("click", crearImagen);
+            document.getElementById("borrarUltimo").addEventListener("click", borrarUltimo);
+            document.getElementById("borrarPrimero").addEventListener("click", borrarPrimero);
+            document.getElementById("sustituirPrimeroVacio").addEventListener("click", sustituirPrimeroVacio);
+        }
+
+        function crearParrafo(){
+            //Crear el elemento
+            var parrafo = document.createElement("p");
+            //Crear un texto, nodo texto. Le pasamos el texto que queramos
+            var texto = document.createTextNode(document.getElementById("texto").value);
+            //Meter el texto al parrafo. Añadimos un hijo al parrafo
+            parrafo.appendChild(texto);
+
+            //No pertenece al documento
+            //Vamos a añadir el atributo clase
+            parrafo.setAttribute("class", "miClase");
+
+            //Falta añadirlo a div
+            var cont = document.getElementById("div1");
+            cont.appendChild(parrafo);
+        }
+
+        function crearImagen(){
+            //Crear el elemento
+            var imagen = document.createElement("img");
+            //No necesitamos crear texto
+            //Hay que incluir la ruta 
+            //Utilizamosun promopt
+            var ruta = prompt("Introduce la ruta de la imagen");
+            imagen.setAttribute("alt", prompt("Introduce el texto alternativo"));
+            imagen.src = ruta;
+
+            //Añadir la imagen al contenedor div
+            var cont = document.getElementById("div1");
+            cont.appendChild(imagen);
+        }
+
+        function borrarUltimo(){
+            //Seleccional el padre y el hijo. Primero seleccionamos el padre
+            var cont = document.getElementById("div1");
+            //Elegir el ultimo de los hijos de cont
+            var hijo = cont.lastChild;
+            //Eliminar el elemento hijo
+            cont.removeChild(hijo);
+        }
+
+        function borrarPrimero(){
+            //Seleccional el padre y el hijo, primero seleccionamos el padre
+            var cont = document.getElementById("div1");
+            //Elegir el primero de los hijos de cont
+            var hijo = cont.firstChild;
+            //Eliminar el elemento hijo
+            cont.removeChild(hijo);
+        }
+
+        function sustituirPrimeroVacio(){
+            //Accedemos al contenedor
+            var cont = document.getElementById("div1");
+            //Vamos a crear un elemento y añadirle un texto
+            var parrafo = document.createElement("p");
+            var texto = document.createTextNode("Vacio");
+            parrafo.appendChild(texto);
+
+            //Sustituir el elemento
+            cont.replaceChild(parrafo, cont.firstChild); //Primer parametro -> nuevo. Segundo parametrro -> viejo
+        }
+    </script>
+</head>
+<body>
+    <!-- <div class="main">
+        <p id="parrafo1">Este es el primer parrafo</p>
+        <p id="parrafo2">Este es el segundo parrafo</p>
+        <p id="parrafo3" class="miClase">Este es el tercer parrafo</p>
+    </div>
+
+<script>
+    function cambiarTextos(){
+        document.getElementById("parrafo1").innerHTML = "Primer parrafo cambiado";
+        document.getElementsByTagName("p")[1].innerHTML = "Segundo parrafo cambiado";
+        document.getElementsByClassName("miClase")[0].innerHTML = "Tercer parrafo cambiado"
+    }
+
+    function cambiarClases(){
+        document.getElementById("parrafo1").setAttribute("class", "miClase");
+
+        document.getElementById("parrafo2").className = "miClase";
+    }
+
+    function quitarClases(){
+        // document.getElementById("parrafo1").setAttribute("class", "");
+        // document.getElementById("parrafo2").className = "";
+
+        //Con este bucle le quitamos las clases a todos los parrafos de la pagina
+        for(var i=0; i<document.getElementsByTagName("p").length; i++){
+            document.getElementsByTagName("p")[i].className = "";
+        }
+    }
+</script>
+
+    <button onclick="cambiarTextos()">Cambiar textos de los parrafos</button>
+    <button onclick="cambiarClases()">Cambiar clases de los parrafos</button>
+    <button onclick="quitarClases()">Quitar clases de todos los parrafos</button> -->
+
+
+    <div id="div1"></div>
+    <br>
+    <textarea id="texto"></textarea>
+    <br>
+
+
+
+    <button id="crearParrafo">Crear parrafo</button>
+    <button id="crearImagen">Crear imagen</button>
+    <button id="borrarUltimo">Borrar ultimo</button>
+    <button id="borrarPrimero">Borrar primero</button>
+    <button id="sustituirPrimeroVacio">Sustituir primer parrafo por vacio</button>
+
+</body>
+</html>
